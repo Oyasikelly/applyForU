@@ -1,103 +1,185 @@
-import Image from "next/image";
+"use client"
+import React from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
-export default function Home() {
+//components
+import ApplyForm from "@/components/ApplyForm";
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
+const HomePage: React.FC = () => {
+
+        const [showForm, setShowForm] = useState(false);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="font-sans text-gray-800 bg-white">
+      {/* Hero Section */}
+      <section className="bg-indigo-600 text-white py-20 px-6 text-center">
+        <motion.h1
+          className="text-4xl md:text-6xl font-bold mb-4"
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          transition={{ duration: 0.6 }}
+        >
+          We Apply. You Get Hired.
+        </motion.h1>
+        <motion.p
+          className="text-lg md:text-2xl mb-8"
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          We help senior developers land high-paying roles — without lifting a finger.
+        </motion.p>
+       <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <button onClick={() => setShowForm(true)} className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-xl hover:bg-gray-100 transition">Apply for Me</button>
+  
+        </motion.div>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* How It Works */}
+      <section className="py-16 px-6 bg-gray-50">
+        <motion.h2
+          className="text-3xl font-bold text-center mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeIn}
+        >
+          How It Works
+        </motion.h2>
+        <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          {[
+            { title: "Tell Us What You Want", desc: "Share your skills, preferences, and goals." },
+            { title: "We Apply for You", desc: "We handle tailored applications to top jobs." },
+            { title: "Interview Support", desc: "We help you prepare and negotiate effectively." },
+            { title: "Get Hired", desc: "Land your dream job and grow your career." }
+          ].map((step, index) => (
+            <motion.div
+              key={index}
+              className="bg-white shadow rounded-xl p-6 text-center"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              transition={{ duration: 0.4 + index * 0.2 }}
+            >
+              <div className="text-2xl font-bold mb-2">Step {index + 1}</div>
+              <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+              <p className="text-gray-600">{step.desc}</p>
+            </motion.div>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-16 px-6">
+        <motion.h2
+          className="text-3xl font-bold text-center mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeIn}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          Why Choose Us
+        </motion.h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {[
+            "Personalized job search",
+            "Confidential handling",
+            "Pay only when you land a job",
+            "Interview coaching",
+            "Industry-specific matching",
+            "Dedicated job managers"
+          ].map((point, index) => (
+            <motion.div
+              key={index}
+              className="bg-blue-50 rounded-xl p-6 shadow text-center"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              transition={{ duration: 0.3 + index * 0.2 }}
+            >
+              <p className="text-lg font-medium text-indigo-600">{point}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      {/* <section className="bg-indigo-600 text-white py-16 px-6 text-center">
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold mb-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeIn}
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          Let’s Get You Hired — Without the Hassle.
+        </motion.h2>
+        <motion.div
+          className="space-x-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeIn}
+          transition={{ delay: 0.3 }}
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <button className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-xl hover:bg-gray-100 transition">Apply for Me</button>
+          <button className="bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-600 transition">Talk to Us</button>
+        </motion.div>
+      </section> */}
+
+
+ <section className="bg-indigo-600 text-white py-20 text-center">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-semibold mb-6"
+        >
+          Ready to Land That Dream Role?
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.9 }}
+          className="text-lg mb-8"
+        >
+          Join DevOrbit today and let us manage your job search like pros.
+        </motion.p>
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <button onClick={() => setShowForm(true)} className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-xl hover:bg-gray-100 transition">Apply for Me</button>
+          {/* <button className="bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-600 transition">Talk to Us</button> */}
+  
+        </motion.div>
+      </section>
+
+
+<ApplyForm showForm={showForm} setShowForm={setShowForm}/>
+
+
+      {/* Footer */}
+      {/* <footer className="bg-gray-100 py-8 px-6 text-center text-sm text-gray-600">
+        <p>© {new Date().getFullYear()} applyForU. All rights reserved.</p>
+      </footer> */}
+    </main>
   );
-}
+};
+
+export default HomePage;
