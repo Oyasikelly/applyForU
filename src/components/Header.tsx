@@ -50,7 +50,7 @@ const Header: React.FC = () => {
               {item.name}
             </motion.a>
           ))}
-          <Link href={`${navItems[1].href}`}>
+          <Link href="/apply">
             <motion.button
               className="bg-indigo-600 text-white px-4 py-2 rounded-lg ml-4 hover:bg-indigo-700 transition"
               whileHover={{ scale: 1.05 }}
@@ -90,7 +90,7 @@ const Header: React.FC = () => {
                   {item.name}
                 </a>
               ))}
-              <Link href="#apply">
+              <Link href="/apply">
                 <button
                   className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
                   onClick={() => setIsOpen(false)}
