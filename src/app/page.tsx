@@ -18,7 +18,17 @@ const HomePage: React.FC = () => {
   return (
     <main className="font-sans text-gray-800 bg-white">
       {/* Hero Section */}
+
+
       <section className="bg-indigo-600 text-white py-20 px-6 text-center">
+        <div className="absolute inset-0 z-0">
+        <img
+          src="/applyforU.webp"
+          alt="Background pattern"
+          className="w-full h-full object-cover opacity-30"
+        />
+      </div>
+      <motion.div className="relative z-10 max-w-4xl mx-auto">
         <motion.h1
           className="text-4xl md:text-6xl font-bold mb-4"
           initial="hidden"
@@ -45,10 +55,11 @@ const HomePage: React.FC = () => {
           <button onClick={() => setShowForm(true)} className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-xl hover:bg-gray-100 transition">Apply for Me</button>
   
         </motion.div>
+      </motion.div>
       </section>
 
       {/* How It Works */}
-      <section className="py-16 px-6 bg-gray-50">
+      <section className="relative z-20 py-16 px-6 bg-gray-50">
         <motion.h2
           className="text-3xl font-bold text-center mb-12"
           initial="hidden"
@@ -74,7 +85,7 @@ const HomePage: React.FC = () => {
               variants={fadeIn}
               transition={{ duration: 0.4 + index * 0.2 }}
             >
-              <div className="text-2xl font-bold mb-2">Step {index + 1}</div>
+              {/* <div className="text-2xl font-bold mb-2">Step {index + 1}</div> */}
               <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
               <p className="text-gray-600">{step.desc}</p>
             </motion.div>
@@ -142,7 +153,18 @@ const HomePage: React.FC = () => {
       </section> */}
 
 
- <section className="bg-indigo-600 text-white py-20 text-center">
+ <section className="relative bg-indigo-600 text-white py-20 text-center">
+
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/job-search.png"
+          alt="Background pattern"
+          className="w-full h-full object-cover opacity-30"
+        />
+      </div>
+
+
+      <motion.div className="relative z-10 max-w-4xl mx-auto">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -168,6 +190,8 @@ const HomePage: React.FC = () => {
           {/* <button className="bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-600 transition">Talk to Us</button> */}
   
         </motion.div>
+      </motion.div>
+
       </section>
 
 
